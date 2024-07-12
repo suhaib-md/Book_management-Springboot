@@ -1,0 +1,115 @@
+{
+    "books" : [
+        {
+          "id": 1,
+          "title": "The Lost Symbol",
+          "author": "Dan Brown",
+          "isbn": "978-0-552-16123-7",
+          "publisher": "Corgi",
+          "year": "2009",
+          "description": "Robert Langdon Mystery",
+          "image_url": "http://example.com/images/the-lost-symbol.jpg",
+          "status": "READING"
+        },
+        {
+          "id": 2,
+          "title": "To Kill a Mockingbird",
+          "author": "Harper Lee",
+          "isbn": "978-0-06-112008-4",
+          "publisher": "J.B. Lippincott & Co.",
+          "year": "1960",
+          "description": "Classic novel of racism and injustice",
+          "image_url": "http://example.com/images/to-kill-a-mockingbird.jpg",
+          "status": "COMPLETED"
+        },
+        {
+          "id": 3,
+          "title": "1984",
+          "author": "George Orwell",
+          "isbn": "978-0-452-28423-4",
+          "publisher": "Secker & Warburg",
+          "year": "1949",
+          "description": "Dystopian social science fiction",
+          "image_url": "http://example.com/images/1984.jpg",
+          "status": "WANT_TO_READ"
+        },
+        {
+          "id": 4,
+          "title": "The Great Gatsby",
+          "author": "F. Scott Fitzgerald",
+          "isbn": "978-0-7432-7356-5",
+          "publisher": "Charles Scribner's Sons",
+          "year": "1925",
+          "description": "Novel about the American Dream",
+          "image_url": "http://example.com/images/the-great-gatsby.jpg",
+          "status": "READING"
+        },
+        {
+          "id": 5,
+          "title": "Moby Dick",
+          "author": "Herman Melville",
+          "isbn": "978-0-14-243724-7",
+          "publisher": "Harper & Brothers",
+          "year": "1851",
+          "description": "Epic tale of the whaling ship Pequod",
+          "image_url": "http://example.com/images/moby-dick.jpg",
+          "status": "COMPLETED"
+        },
+        {
+          "id": 6,
+          "title": "Pride and Prejudice",
+          "author": "Jane Austen",
+          "isbn": "978-0-19-953556-9",
+          "publisher": "T. Egerton",
+          "year": "1813",
+          "description": "Romantic novel of manners",
+          "image_url": "http://example.com/images/pride-and-prejudice.jpg",
+          "status": "WANT_TO_READ"
+        },
+        {
+          "id": 7,
+          "title": "The Hobbit",
+          "author": "J.R.R. Tolkien",
+          "isbn": "978-0-618-00221-3",
+          "publisher": "George Allen & Unwin",
+          "year": "1937",
+          "description": "Fantasy novel and prelude to The Lord of the Rings",
+          "image_url": "http://example.com/images/the-hobbit.jpg",
+          "status": "READING"
+        },
+        {
+          "id": 8,
+          "title": "Fahrenheit 451",
+          "author": "Ray Bradbury",
+          "isbn": "978-0-7432-4722-1",
+          "publisher": "Ballantine Books",
+          "year": "1953",
+          "description": "Dystopian novel about a future society where books are banned",
+          "image_url": "http://example.com/images/fahrenheit-451.jpg",
+          "status": "COMPLETED"
+        },
+        {
+          "id": 9,
+          "title": "Brave New World",
+          "author": "Aldous Huxley",
+          "isbn": "978-0-06-085052-4",
+          "publisher": "Chatto & Windus",
+          "year": "1932",
+          "description": "Dystopian novel set in a futuristic World State",
+          "image_url": "http://example.com/images/brave-new-world.jpg",
+          "status": "WANT_TO_READ"
+        },
+        {
+          "id": 10,
+          "title": "The Catcher in the Rye",
+          "author": "J.D. Salinger",
+          "isbn": "978-0-316-76948-0",
+          "publisher": "Little, Brown and Company",
+          "year": "1951",
+          "description": "Novel about teenage rebellion and angst",
+          "image_url": "http://example.com/images/the-catcher-in-the-rye.jpg",
+          "status": "READING"
+        }
+      ]
+      
+}

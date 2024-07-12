@@ -1,32 +1,76 @@
 package com.kindle.books.book;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
-
-import jakarta.annotation.PostConstruct;
+import org.springframework.util.Assert;
 
 @Repository
 public class BookRepository {
 
-    private List<Book> books = new ArrayList<>();
+    private static final Logger log = LoggerFactory.getLogger(BookRepository.class);
 
-    List<Book> getAllBooks() {
-        return books;
+    private final JdbcClient jdbcClient;
+
+    public BookRepository(JdbcClient jdbcClient) {
+        this.jdbcClient = jdbcClient;
     }
 
-    Optional<Book> findById(Integer id) {
-        return books.stream().filter(book -> book.id().equals(id)).findFirst();
+    public List<Book> getAllBooks() {
+        return jdbcClient.sql("select * from Book")
+                .query(Book.class)
+                .list();
     }
 
-    @PostConstruct
-    private void init() {
-        books.add(new Book(1,"The Lost Symbol", "Dan Brown", "978-0-552-16123-7", "Corgi", "2009", "Robert Langdon Mystery", "image_url", Status.READING));
-        books.add(new Book(2, "To Kill a Mockingbird", "Harper Lee", "978-0-06-112008-4", "J.B. Lippincott & Co.", "1960", "Classic novel of racism and injustice", "image_url", Status.COMPLETED));
-        books.add(new Book(3, "1984", "George Orwell", "978-0-452-28423-4", "Secker & Warburg", "1949", "Dystopian social science fiction", "image_url", Status.WANT_TO_READ));
-        books.add(new Book(4, "The Great Gatsby", "F. Scott Fitzgerald", "978-0-7432-7356-5", "Charles Scribner's Sons", "1925", "Novel about the American Dream", "image_url", Status.READING));
+    public Optional<Book> findById(Integer id) {
+        return jdbcClient.sql("select * from Book where id = :id")
+               .param("id", id)
+               .query(Book.class)
+               .optional();
+    }
+
+    public void createBook(Book book) {
+        var updated = jdbcClient.sql("insert into Book (id, title, author, isbn, publisher, \"year\", \"description\", image_url, \"status\") values (?,?,?,?,?,?,?,?,?)")
+               .params(List.of(book.id(), book.title(), book.author(), book.isbn(), book.publisher(), book.year(), book.description(), book.image_url(), book.status().toString()))
+               .update();
+
+        Assert.state(updated==1, "Failed to create book "+ book.title());
+    }
+
+    public void updateBook(Book book, Integer id) {
+        var updated = jdbcClient.sql("update Book set title =?, author =?, isbn =?, publisher =?, \"year\" =?, \"description\" =?, image_url =?, \"status\" =? where id =?")
+               .params(List.of(book.title(), book.author(), book.isbn(), book.publisher(), book.year(), book.description(), book.image_url(), book.status().toString(), id))
+               .update();
+        
+        Assert.state(updated==1, "Failed to update book "+ book.title());
+    }
+
+    public void deleteBook(Integer id) {
+        var updated = jdbcClient.sql("delete from Book where id =?")
+               .params(List.of(id))
+               .update();
+
+        Assert.state(updated==1, "Failed to delete book "+ id);
+    }
+
+    public int count() {
+        return jdbcClient.sql("select * from Book")
+               .query().listOfRows().size();
+    }
+
+    public void saveAll(List<Book> books) {
+        books.stream().forEach(this::createBook);
+    }
+
+    public List<Book> findByStatus(Status status) {
+        return jdbcClient.sql("select * from Book where status =?")
+               .params(List.of(status.toString()))
+               .query(Book.class)
+               .list();
     }
 
 
