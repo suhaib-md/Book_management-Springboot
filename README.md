@@ -30,7 +30,7 @@ Make sure you have the following installed:
 
    Update the `application.yml` file with your RSA public and private keys under `rsa`.
 
-   Use Openssl tool to generate your public key and private key using the following commands:
+   Use OpenSSL tool to generate your public key and private key using the following commands:
 
     - Create these keys in a new folder under /src/main/rescurces/certs.
 
