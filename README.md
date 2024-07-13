@@ -30,19 +30,41 @@ Make sure you have the following installed:
 
    Update the `application.yml` file with your RSA public and private keys under `rsa`.
 
-3. **Build the application:**
+   Use Openssl tool to generate your public key and private key using the following commands:
+
+    - Create these keys in a new folder under /src/main/rescurces/certs.
+
+      **create rsa key pair**
+      
+       ```bash
+      openssl genrsa -out keypair.pem 2048
+       ```
+       
+      **extract public key**
+      
+      ```bash
+      openssl rsa -in keypair.pem -pubout -out public.pem
+      ```
+      
+      **create private key in PKCS#8 format**
+      
+      ```bash
+      openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in keypair.pem -out private.pem
+      ```
+
+4. **Build the application:**
 
    ```bash
    mvn clean package
    ```
 
-4. **Run the application:**
+5. **Run the application:**
 
    ```bash
    java -jar target/Book_management-Springboot.jar
    ```
 
-5. **Access the application:**
+6. **Access the application:**
 
    Open your web browser and go to [http://localhost:8080](http://localhost:8080) to access the application.
 
